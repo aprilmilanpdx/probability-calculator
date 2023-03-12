@@ -16,19 +16,6 @@ import random
 
 # For example, if your hat is {"red": 2, "blue": 1}, contents should be ["red", "red", "blue"].
 
-
-class Hat:
-    def __init__(self, **balls):
-        self.contents = [k for k, v in balls.items() for i in range(v)]
-
-    def draw(self, n):
-        drawn = []
-        if n > len(self.contents):
-            return self.contents
-        for i in range(n):
-            
-            
-
 # The Hat class should have a draw method that accepts an argument indicating the number of balls to draw from the hat. 
 
 # This method should remove balls at random from contents and return those balls as a list of strings. 
@@ -37,5 +24,20 @@ class Hat:
 
 # If the number of balls to draw exceeds the available quantity, return all the balls.
 
+class Hat:
+    def __init__(self, **balls):
+        self.contents = [k for k, v in balls.items() for i in range(v)]
 
-# def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
+    def draw(self, n):
+        drawn_list = []
+        if n > len(self.contents):
+            return self.contents
+        for i in range(n):
+            drawn = self.contents.pop(random.randrange(len(self.contents)))
+            drawn_list.append(drawn)
+        return drawn_list   
+            
+            
+            
+            
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
